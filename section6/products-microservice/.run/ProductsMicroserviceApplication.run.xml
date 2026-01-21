@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ProductsMicroserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="ProductsMicroservice" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.ribas.andrei.training.udemy.kafka.section6.products.ProductsMicroserviceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
