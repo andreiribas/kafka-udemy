@@ -1,12 +1,12 @@
 package com.ribas.andrei.training.udemy.kafka.section6.products.web;
 
-import com.ribas.andrei.training.udemy.kafka.section6.products.event.common.config.KafkaConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ComponentScan;
 
-@Import(KafkaConfig.class)
+
 @SpringBootApplication
+@ComponentScan("com.ribas.andrei.training.udemy.kafka.section6.products")
 public class ProductsMicroserviceApplication {
 
     static void main(String[] args) {

@@ -1,0 +1,10 @@
+### POST JSON
+POST http://localhost:8080/api/products
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "SCCP Jersey",
+  "price": 150.49,
+  "quantity": 10
+}

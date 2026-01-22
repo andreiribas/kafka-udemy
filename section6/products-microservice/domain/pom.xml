@@ -8,22 +8,12 @@
 		<version>1.0.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>products-microservice-service</artifactId>
-	<name>ProductsMicroserviceService</name>
-	<description>Products Microservice Service</description>
+	<artifactId>products-microservice-domain</artifactId>
+	<name>ProductsMicroserviceDomain</name>
+	<description>Products Microservice Domain</description>
 	<properties>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>com.ribas.andrei.training.udemy.kafka.section6</groupId>
-			<artifactId>products-microservice-event-publisher</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ribas.andrei.training.udemy.kafka.section6</groupId>
-			<artifactId>products-microservice-domain</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>

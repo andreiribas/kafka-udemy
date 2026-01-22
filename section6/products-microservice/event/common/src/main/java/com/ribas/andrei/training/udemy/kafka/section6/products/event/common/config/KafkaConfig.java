@@ -10,9 +10,11 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
+    public static final String PRODUCT_CREATED_EVENTS_TOPIC_NAME = "product-created-events-topic";
+
     @Bean
     NewTopic createTopic() {
-        return TopicBuilder.name("product-created-events-topic")
+        return TopicBuilder.name(PRODUCT_CREATED_EVENTS_TOPIC_NAME)
                 .partitions(3)
                 .replicas(3)
                 // min number of replicas that need to acknowledge the write operation (publish of an event)

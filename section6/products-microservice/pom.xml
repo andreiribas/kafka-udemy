@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>4.0.1</version>
-		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.ribas.andrei.training.udemy.kafka.section6</groupId>
 	<artifactId>products-microservice-parent</artifactId>
@@ -22,8 +22,15 @@
 		<spring-boot.version>4.0.1</spring-boot.version>
 	</properties>
 	<modules>
+		<module>domain</module>
 		<module>event</module>
 		<module>service</module>
 		<module>web</module>
 	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+	</dependencies>
 </project>
