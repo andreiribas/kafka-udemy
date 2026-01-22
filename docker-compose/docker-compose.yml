@@ -1,17 +1,8 @@
-#version: "3.8"
-
-networks:
-  kafka-net:
-    driver: bridge
-
 services:
   kafka-1:
     image: confluentinc/cp-kafka
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    network_mode: host # lets applications outside docker to access the container
-#    networks:
-#      - kafka-net
     ports:
       - "9101:9101"
       - "29092:29092"
@@ -36,9 +27,6 @@ services:
     image: confluentinc/cp-kafka
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    network_mode: host
- #   networks:
- #     - kafka-net
     ports:
       - "9111:9111"
       - "29192:29092"
@@ -63,9 +51,6 @@ services:
     image: confluentinc/cp-kafka
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    network_mode: host
-  #  networks:
-  #    - kafka-net
     ports:
       - "9211:9211"
       - "29292:29092"
@@ -85,4 +70,3 @@ services:
       KAFKA_CLUSTER_ID: 'Zm8OeE-6QC2JYh0mfgmPsA'
     volumes:
       - /tmp/kafka/docker-compose/volumes/server-3:/bitnami/kafka
-
