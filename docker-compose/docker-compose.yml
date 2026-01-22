@@ -10,8 +10,8 @@ services:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     network_mode: host # lets applications outside docker to access the container
-    networks:
-      - kafka-net
+#    networks:
+#      - kafka-net
     ports:
       - "9101:9101"
       - "29092:29092"
@@ -37,8 +37,8 @@ services:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     network_mode: host
-    networks:
-      - kafka-net
+ #   networks:
+ #     - kafka-net
     ports:
       - "9111:9111"
       - "29192:29092"
@@ -47,7 +47,7 @@ services:
     environment:
       KAFKA_NODE_ID: 2
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:29092,PLAINTEXT_HOST://${HOSTNAME2:-localhost}:9192
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:29092,PLAINTEXT_HOST://${HOSTNAME2:-localhost}:9192
       KAFKA_JMX_PORT: 9111
       KAFKA_JMX_HOSTNAME: ${HOSTNAME2:-localhost}
       KAFKA_PROCESS_ROLES: controller,broker
@@ -64,8 +64,8 @@ services:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     network_mode: host
-    networks:
-      - kafka-net
+  #  networks:
+  #    - kafka-net
     ports:
       - "9211:9211"
       - "29292:29092"
