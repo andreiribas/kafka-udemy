@@ -1,5 +1,0 @@
-# random port
-server.port=0
-
-spring:\
-  kafka.producer.bootstrap-servers=localhost:9092,localhost:9192,localhost:9292

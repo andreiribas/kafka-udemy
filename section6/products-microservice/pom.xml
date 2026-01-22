@@ -6,13 +6,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>4.0.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.appsdeveloperblog.ws</groupId>
-	<artifactId>ProductsMicroservice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>ProductsMicroservice</name>
-	<description>Products Microservice</description>
+	<groupId>com.ribas.andrei.training.udemy.kafka.section6</groupId>
+	<artifactId>products-microservice-parent</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>ProductsMicroserviceParent</name>
+	<description>Products Microservice Parent</description>
 	<properties>
 		<maven.compiler.source>25</maven.compiler.source>
 		<maven.compiler.target>25</maven.compiler.target>
@@ -20,63 +21,9 @@
 		<java.version>25</java.version>
 		<spring-boot.version>4.0.1</spring-boot.version>
 	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webmvc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-kafka</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
-					</image>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.openrewrite.maven</groupId>
-				<artifactId>rewrite-maven-plugin</artifactId>
-				<version>6.28.0</version>
-				<configuration>
-					<activeRecipes>
-						<recipe>org.openrewrite.java.spring.boot4.UpgradeSpringBoot_4_0</recipe>
-						<recipe>org.openrewrite.java.migrate.UpgradeToJava25</recipe>
-					</activeRecipes>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.openrewrite.recipe</groupId>
-						<artifactId>rewrite-migrate-java</artifactId>
-						<version>3.25.0</version>
-					</dependency>
-					<dependency>
-						<groupId>org.openrewrite.recipe</groupId>
-						<artifactId>rewrite-spring</artifactId>
-						<version>6.22.1</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-		</plugins>
-	</build>
-
+	<modules>
+		<module>event</module>
+		<module>service</module>
+		<module>web</module>
+	</modules>
 </project>
