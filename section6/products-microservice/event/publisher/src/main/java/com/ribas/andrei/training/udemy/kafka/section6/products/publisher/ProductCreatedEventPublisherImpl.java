@@ -23,15 +23,29 @@ class ProductCreatedEventPublisherImpl implements ProductCreatedEventPublisher {
     private final KafkaTemplate<String, ProductCreatedEvent> kafkaTemplate;
 
     public CompletableFuture<SendResult<String, ProductCreatedEvent>> publishAsync(ProductCreatedEvent event) {
-        return this.kafkaTemplate.send(PRODUCT_CREATED_EVENTS_TOPIC_NAME, event.getId(), event);
+        return publishAsyncInternal(event, true);
     }
 
+    @Override
     public void publishSync(ProductCreatedEvent event) {
         try {
-            var result = publishAsync(event).get(30, TimeUnit.SECONDS);
-            log.debug("Event sent successfully: {} with id {} to topic {}: {}", event.getClass().getSimpleName(), event.getId(), PRODUCT_CREATED_EVENTS_TOPIC_NAME, result.getRecordMetadata());
+            publishAsyncInternal(event, false).get(30, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException | RuntimeException e) {
             throw new PublisherException("Error while sending event %s with id %s to topic %s.".formatted(event.getClass().getSimpleName(), event.getId(), PRODUCT_CREATED_EVENTS_TOPIC_NAME), event.getId(), PRODUCT_CREATED_EVENTS_TOPIC_NAME, e);
         }
     }
+
+    public CompletableFuture<SendResult<String, ProductCreatedEvent>> publishAsyncInternal(ProductCreatedEvent event, boolean async) {
+        return this.kafkaTemplate.send(PRODUCT_CREATED_EVENTS_TOPIC_NAME, event.getId(), event)
+                .whenComplete((result, exception) -> {
+                    if (exception != null) {
+                        if(async) {
+                            log.error("Error while sending event {} with id {} to topic {}.", event.getClass().getSimpleName(), event.getId(), PRODUCT_CREATED_EVENTS_TOPIC_NAME, exception);
+                        }
+                    } else {
+                        log.debug("Event sent successfully: {} with id {} to topic {}: {}", event.getClass().getSimpleName(), event.getId(), PRODUCT_CREATED_EVENTS_TOPIC_NAME, result.getRecordMetadata());
+                    }
+                });
+    }
+
 }
