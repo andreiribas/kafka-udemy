@@ -9,5 +9,5 @@ public interface ProductCreatedEventPublisher {
 
     CompletableFuture<SendResult<String, ProductCreatedEvent>> publishAsync(ProductCreatedEvent event);
 
-    void publishSync(ProductCreatedEvent event);
+    SendResult<String, ProductCreatedEvent> publishSync(ProductCreatedEvent event);
 }

@@ -27,9 +27,9 @@ class ProductCreatedEventPublisherImpl implements ProductCreatedEventPublisher {
     }
 
     @Override
-    public void publishSync(ProductCreatedEvent event) {
+    public SendResult<String, ProductCreatedEvent> publishSync(ProductCreatedEvent event) {
         try {
-            publishAsyncInternal(event, false).get(30, TimeUnit.SECONDS);
+            return publishAsyncInternal(event, false).get(30, TimeUnit.SECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException | RuntimeException e) {
             throw new PublisherException("Error while sending event %s with id %s to topic %s.".formatted(event.getClass().getSimpleName(), event.getId(), PRODUCT_CREATED_EVENTS_TOPIC_NAME), event.getId(), PRODUCT_CREATED_EVENTS_TOPIC_NAME, e);
         }
