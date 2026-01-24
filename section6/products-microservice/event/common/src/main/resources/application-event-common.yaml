@@ -2,11 +2,16 @@ spring:
   kafka:
     bootstrap-servers: kafka-1:9092,kafka-2:9192,kafka-3:9292
     producer:
-      bootstrap-servers: kafka-1:9092,kafka-2:9192,kafka-3:9292
+      acks: all
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
-      retries: 3
+      retries: 10
       properties:
+        reconnect:
+          backoff:
+            ms: 1000
+            max:
+              ms: 10000
         request:
           timeout:
             ms: 30000
