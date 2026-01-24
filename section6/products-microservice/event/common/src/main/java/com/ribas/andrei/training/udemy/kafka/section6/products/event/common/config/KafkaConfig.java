@@ -19,7 +19,6 @@ public class KafkaConfig {
                 .replicas(3)
                 // min number of replicas that need to acknowledge the write operation (publish of an event)
                 .configs(Map.of("min.insync.replicas", "2"))
-
                 .build();
     }
 }

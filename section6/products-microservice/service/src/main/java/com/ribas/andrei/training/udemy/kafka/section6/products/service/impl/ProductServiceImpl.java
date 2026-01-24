@@ -26,10 +26,10 @@ public class ProductServiceImpl implements ProductService {
         var productCreatedEvent = new ProductCreatedEvent(productId, product.getTitle(), product.getPrice(), product.getQuantity());
 
         log.info("Before publishing event for productId: {}", productId);
-        // var result = productCreatedEventPublisher.publishSync(productCreatedEvent);
-        var result = productCreatedEventPublisher.publishAsync(productCreatedEvent);
+        var result = productCreatedEventPublisher.publishSync(productCreatedEvent);
+        //var result = productCreatedEventPublisher.publishAsync(productCreatedEvent);
 
-        //log.info("After publishing event for productId: {}, topic: {}, partition: {}, offset: {}.", productId, result.getRecordMetadata().topic(), result.getRecordMetadata().partition(), result.getRecordMetadata().offset());
+        log.info("After publishing event for productId: {}, topic: {}, partition: {}, offset: {}.", productId, result.getRecordMetadata().topic(), result.getRecordMetadata().partition(), result.getRecordMetadata().offset());
         return productId;
     }
 }
