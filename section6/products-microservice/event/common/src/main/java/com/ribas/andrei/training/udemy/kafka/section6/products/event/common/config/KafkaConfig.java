@@ -32,8 +32,8 @@ public class KafkaConfig {
     @Value("${spring.kafka.producer.acks}")
     private String acks;
 
-    @Value("${spring.kafka.producer.retries}")
-    private String retries;
+//    @Value("${spring.kafka.producer.retries}")
+//    private String retries;
 
     @Value("${spring.kafka.producer.properties.delivery.timeout.ms}")
     private String deliveryTimeout;
@@ -59,7 +59,7 @@ public class KafkaConfig {
         map.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, keySerializer);
         map.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, valueSerializer);
         map.put(ProducerConfig.ACKS_CONFIG, acks);
-        map.put(ProducerConfig.RETRIES_CONFIG, retries);
+//        map.put(ProducerConfig.RETRIES_CONFIG, retries);
         map.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, deliveryTimeout);
         map.put(ProducerConfig.LINGER_MS_CONFIG, linger);
         map.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, requestTimeout);
