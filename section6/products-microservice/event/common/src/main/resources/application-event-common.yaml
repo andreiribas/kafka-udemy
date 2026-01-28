@@ -5,7 +5,6 @@ spring:
       acks: all
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
-#      retries: 10
       properties:
         delivery:
           timeout:
@@ -18,3 +17,5 @@ spring:
 #        retry:
 #          backoff:
 #            ms: 1000
+        enable:
+          idempotence: true

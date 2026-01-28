@@ -40,6 +40,9 @@ public class KafkaConfig {
     @Value("${spring.kafka.producer.properties.request.timeout.ms}")
     private String requestTimeout;
 
+    @Value("${spring.kafka.producer.properties.enable.idempotence}")
+    private String enableIdempotence;
+
     Map<String, Object> producerConfigs() {
         return Map.of(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers, //
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, keySerializer, //
@@ -47,7 +50,8 @@ public class KafkaConfig {
                 ProducerConfig.ACKS_CONFIG, acks, //
                 ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, deliveryTimeout, //
                 ProducerConfig.LINGER_MS_CONFIG, linger, //
-                ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, requestTimeout
+                ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, requestTimeout, //
+                ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, enableIdempotence
         );
     }
 

@@ -25,3 +25,5 @@ spring:
 #        retry:
 #          backoff:
 #            ms: 1000
+        enable:
+          idempotence: true
