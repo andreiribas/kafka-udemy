@@ -12,16 +12,16 @@ spring:
       acks: all
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
-      retries: 10
+#      retries: 10
       properties:
-        reconnect:
-          backoff:
-            ms: 1000
-            max:
-              ms: 10000
+        delivery:
+          timeout:
+            ms: 120000
+        linger:
+          ms: 0
         request:
           timeout:
             ms: 30000
-        retry:
-          backoff:
-            ms: 1000
+#        retry:
+#          backoff:
+#            ms: 1000
