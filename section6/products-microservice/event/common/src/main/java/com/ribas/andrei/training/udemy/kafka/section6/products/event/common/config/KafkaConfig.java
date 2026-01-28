@@ -12,6 +12,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
@@ -31,6 +32,9 @@ public class KafkaConfig {
     @Value("${spring.kafka.producer.acks}")
     private String acks;
 
+    @Value("${spring.kafka.producer.retries}")
+    private String retries;
+
     @Value("${spring.kafka.producer.properties.delivery.timeout.ms}")
     private String deliveryTimeout;
 
@@ -43,16 +47,27 @@ public class KafkaConfig {
     @Value("${spring.kafka.producer.properties.enable.idempotence}")
     private String enableIdempotence;
 
+    @Value("${spring.kafka.producer.properties.request.retry.backoff.ms}")
+    private String requestRetryBackoff;
+
+    @Value("${spring.kafka.producer.properties.max.in.flight.requests.per.connection}")
+    private String maxInFlightRequestsPerConnection;
+
     Map<String, Object> producerConfigs() {
-        return Map.of(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers, //
-                ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, keySerializer, //
-                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, valueSerializer, //
-                ProducerConfig.ACKS_CONFIG, acks, //
-                ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, deliveryTimeout, //
-                ProducerConfig.LINGER_MS_CONFIG, linger, //
-                ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, requestTimeout, //
-                ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, enableIdempotence
-        );
+        var map = new HashMap<String, Object>();
+        map.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        map.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, keySerializer);
+        map.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, valueSerializer);
+        map.put(ProducerConfig.ACKS_CONFIG, acks);
+        map.put(ProducerConfig.RETRIES_CONFIG, retries);
+        map.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, deliveryTimeout);
+        map.put(ProducerConfig.LINGER_MS_CONFIG, linger);
+        map.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, requestTimeout);
+        map.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, enableIdempotence);
+        map.put(ProducerConfig.RETRY_BACKOFF_MS_CONFIG, requestRetryBackoff);
+        map.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, maxInFlightRequestsPerConnection);
+
+        return map;
     }
 
     @Bean
