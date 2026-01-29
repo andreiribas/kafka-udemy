@@ -13,3 +13,5 @@ spring:
         event:
           productCreatedEvent:
             topicName: "product-created-events-topic"
+  main:
+    web-application-type: none

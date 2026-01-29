@@ -4,4 +4,4 @@ server:
 
 spring:
   config:
-    import: classpath:/product-created-event-publisher-application.yaml,classpath:/email-notification-consumer-product-created-event-application.yaml
+    import: classpath:/product-created-event-publisher-application.yaml
