@@ -8,7 +8,7 @@
 		<version>4.0.1</version>
 		<relativePath/>
 	</parent>
-	<groupId>com.ribas.andrei.training.udemy.kafka.section6</groupId>
+	<groupId>com.ribas.andrei.training.udemy.kafka</groupId>
 	<artifactId>products-microservice-parent</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>

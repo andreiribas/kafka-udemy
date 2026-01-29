@@ -8,7 +8,7 @@ spring:
         spring:
           json:
             trusted:
-              packages: "com.ribas.andrei.training.udemy.kafka.section6.products.event.common.event"
+              packages: "com.ribas.andrei.training.udemy.kafka.products.event.common.event"
       emailNotification:
         event:
           productCreatedEvent:
