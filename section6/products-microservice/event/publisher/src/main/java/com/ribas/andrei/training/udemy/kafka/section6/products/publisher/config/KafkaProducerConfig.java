@@ -1,8 +1,7 @@
-package com.ribas.andrei.training.udemy.kafka.section6.products.event.common.config;
+package com.ribas.andrei.training.udemy.kafka.section6.products.publisher.config;
 
 import com.ribas.andrei.training.udemy.kafka.section6.products.event.common.event.ProductCreatedEvent;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class KafkaConfig {
+public class KafkaProducerConfig {
 
-    public static final String PRODUCT_CREATED_EVENTS_TOPIC_NAME = "product-created-events-topic";
+    @Value("${spring.kafka.producer.event.productCreatedEvent.topicName}")
+    private String topicName;
 
-    @Value("${spring.kafka.bootstrap-servers}")
+    @Value("${spring.kafka.producer.bootstrap-servers}")
     private String bootstrapServers;
 
     @Value("${spring.kafka.producer.key-serializer}")
@@ -82,7 +82,7 @@ public class KafkaConfig {
 
     @Bean
     NewTopic createTopic() {
-        return TopicBuilder.name(PRODUCT_CREATED_EVENTS_TOPIC_NAME)
+        return TopicBuilder.name(topicName)
                 .partitions(3)
                 .replicas(3)
                 // min number of replicas that need to acknowledge the write operation (publish of an event)
